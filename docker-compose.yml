@@ -1,0 +1,20 @@
+services:
+  auth-db:
+    image: postgres:latest
+    container_name: auth-db
+    hostname: auth-db
+    environment:
+    POSTGRES_USER: ${AUTH_POSTGRES_USER}
+    POSTGRES_PASSWORD: ${AUTH_POSTGRES_PASSWORD} 
+    POSTGRES_DB: ${AUTH_POSTGRES_DBNAME}
+ports:
+  - "545:5432"
+volumes:
+  - auth-db-data:/var/lib/postgresql/data
+  #network:
+  # -app_network
+
+#volumes:
+  #auth-db-data
+  #
+  #auth-db-data
