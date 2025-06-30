@@ -1,7 +1,7 @@
 services:
   auth-db:
     image: postgres:latest
-    container_name: project_template_auth_db
+    container_name: tracker_auth_db
     hostname: auth-db
     environment:
       POSTGRES_USER: ${AUTH_POSTGRES_USER}
@@ -13,7 +13,7 @@ services:
     volumes:
       - auth-db-data:/var/lib/postgresql/data
     networks:
-      - project_template_network
+      - tracker_network
 
 
 
@@ -23,6 +23,6 @@ volumes:
     name: auth-db-data
 
 networks:
-  project_template_network:
+  tracker_network:
     driver: bridge
-    name: project_template_network
+    name: tracker_network

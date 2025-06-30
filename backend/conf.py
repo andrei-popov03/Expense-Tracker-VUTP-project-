@@ -1,5 +1,5 @@
 import os
-from .env_template import load_dotenv
+from dotenv import load_dotenv
 
 load_dotenv()
 

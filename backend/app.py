@@ -1,5 +1,5 @@
 from flask import Flask
-from config import Config
+from conf import Config
 from extensions import db, jwt, migrate
 
 
