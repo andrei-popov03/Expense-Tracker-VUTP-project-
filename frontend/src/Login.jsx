@@ -9,7 +9,7 @@ function Login() {
 
   const handleLogin = () => {
     if (username && password) {
-      fetch("http://localhost:8080/login", {
+      fetch("http://localhost:5000/login", {
         method: "POST", // Ensure your backend /login route accepts POST requests
         headers: {
           "Content-Type": "application/json"
