@@ -26,7 +26,7 @@ function Login() {
         // Handle successful login (e.g., save token, redirect)
         console.log("Login successful:", data);
         // Redirect to dashboard after login
-        navigate("/dashboard");
+        navigate("/Dashboard");
       })
       .catch(error => {
         alert(error.message);

@@ -3,6 +3,7 @@ from services import generate_token
 from models import User
 from extensions import db
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 auth_bp = Blueprint('auth', __name__)
@@ -44,8 +45,22 @@ def login():
 
     return jsonify({"msg": "Invalid credentials"}), 401
 
-@auth_bp.route('/all_users', methods=['GET'])
-def get_all_users():
-    users = User.query.all()
-    user_list = [{"id": user.id, "username": user.username, "email": user.email} for user in users]
-    return jsonify(user_list), 200
+# @auth_bp.route('/all_users', methods=['GET'])
+# def get_all_users():
+#     users = User.query.all()
+#     user_list = [{"id": user.id, "username": user.username, "email": user.email} for user in users]
+#     return jsonify(user_list), 200
+
+@auth_bp.route('/user', methods=['GET'])
+@jwt_required()
+def get_current_user():
+    user_id = get_jwt_identity()
+    user = User.query.get(user_id)
+
+    if not user:
+        return jsonify({"msg": "User not found"}), 404
+
+    return jsonify({
+        "username": user.username,
+        "email": user.email
+    }), 200
