@@ -14,6 +14,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import Dashboard from "./Dashboard";
+import './App.css'; // Assuming you have some global styles
 
 function App() {
   return (

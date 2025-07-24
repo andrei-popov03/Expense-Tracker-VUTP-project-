@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import './App.css';
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -37,27 +38,28 @@ function Login() {
   };
 
   return (
-    <header>
+    <header className="login-header">
       {/* <h1>Log in</h1> */}
-      <div className="logo">
-        <h2>Log in</h2>
-        <input
+      <div className="login-container">
+        <h2 className="login-h2" >Log in</h2>
+        <form className="login-form" onSubmit={handleLogin}></form>
+        <input className="login-input"
           type="text"
           placeholder="Username"
           value={username}
           onChange={e => setUsername(e.target.value)}
         />
         <br />
-        <input
+        <input className="login-input"
           type="password"
           placeholder="Password"
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <h3>
-          Don't have an account? <Link to="/register">Register</Link>
+        <h3 className="login-h3">
+          Don't have an account? <Link className="link-register" to="/register">Register</Link>
         </h3>
-        <button onClick={handleLogin}>Log in</button>
+        <button className="login-button" onClick={handleLogin}>Log in</button>
         <br />
         {/* <Link to="/login" style={{ color: "blue", cursor: "pointer" }}>Login</Link> */}
       </div>

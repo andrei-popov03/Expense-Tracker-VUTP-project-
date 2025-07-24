@@ -49,11 +49,11 @@ function Register() {
   };
 
   return (
-    <header>
-      <div className="logo">
-        <h2>Register</h2>
+    <header className="register-header">
+      <div className="register-container">
+        <h2 className="register-h2">Register</h2>
         <form onSubmit={handleRegister}>
-          <input
+          <input className="register-input"
             type="text"
             name="username"
             placeholder="Username"
@@ -61,7 +61,7 @@ function Register() {
             onChange={handleChange}
           />
           <br />
-          <input
+          <input className="register-input"
             type="email"
             name="email"
             placeholder="Email"
@@ -69,7 +69,7 @@ function Register() {
             onChange={handleChange}
           />
           <br />
-          <input
+          <input className="register-input"
             type="password"
             name="password"
             placeholder="Password"
@@ -77,10 +77,10 @@ function Register() {
             onChange={handleChange}
           />
           <br />
-          <h3>
-            Already have an account? <Link to="/login">Log in</Link>
+          <h3 className="register-h3">
+            Already have an account? <Link className="login-link" to="/login">Log in</Link>
           </h3>
-          <button type="submit" disabled={loading}>
+          <button className="register-button" type="submit" disabled={loading}>
             {loading ? "Registering..." : "Register"}
           </button>
         </form>
@@ -90,6 +90,7 @@ function Register() {
     </header>
   );
 }
+
 
 
 export default Register;
