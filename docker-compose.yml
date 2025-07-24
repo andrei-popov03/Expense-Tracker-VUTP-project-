@@ -1,0 +1,69 @@
+# services:
+#   auth-db:
+#     image: postgres:latest
+#     container_name: tracker_auth_db
+#     hostname: auth-db
+#     environment:
+#       POSTGRES_USER: ${AUTH_POSTGRES_USER}
+#       POSTGRES_PASSWORD: ${AUTH_POSTGRES_PASSWORD}
+#       POSTGRES_DB: ${AUTH_POSTGRES_DBNAME}
+#       TZ: Europe/Sofia
+#     ports:
+#       - "5450:5432"
+#     volumes:
+#       - auth-db-data:/var/lib/postgresql/data
+#     networks:
+#       - tracker_network
+
+
+
+# volumes:
+#   auth-db-data:
+#     driver: local
+#     name: auth-db-data
+
+# networks:
+#   tracker_network:
+#     driver: bridge
+#     name: tracker_network
+#--old code above
+
+
+version: '3.8'
+
+services:
+  auth-db:
+    image: postgres:latest
+    container_name: tracker_auth_db
+    hostname: auth-db
+    environment:
+      POSTGRES_USER: ${AUTH_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${AUTH_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${AUTH_POSTGRES_DBNAME}
+      TZ: Europe/Sofia
+    ports:
+      - "5450:5432"
+    volumes:
+      - auth-db-data:/var/lib/postgresql/data
+    networks:
+      - tracker_network
+
+  backend:
+    build: ./backend
+    container_name: tracker_backend
+    depends_on:
+      - auth-db
+    ports:
+      - "5000:5000"
+    networks:
+      - tracker_network
+    env_file:
+      - .env  # Ако .env е на едно ниво нагоре спрямо backend директорията
+
+volumes:
+  auth-db-data:
+
+networks:
+  tracker_network:
+    driver: bridge
+

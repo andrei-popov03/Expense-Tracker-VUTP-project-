@@ -1,0 +1,152 @@
+/* App.css */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0f172a; /* тъмносиньо-черен фон */
+  color: #f0fdf4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+/* Login page css */
+
+
+.login-container {
+  background-color: rgb(26, 31, 46);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); /*зелена сянка */
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #bbf7d0; /* светлозелено */
+}
+
+.login-h3 {
+  text-align: left;
+  margin-bottom: 20px;
+  color: #bbf7d0; /* светлозелено */
+}
+
+.link-register {
+  text-align: left;
+  color: #4ade80; /* светлозелено */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.link-register:hover {
+  color: #22c55e; /* по-наситено зелено при ховър */
+  text-decoration: underline;
+}
+
+
+.login-input{
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  border: 1px solid #4ade80;
+  background-color: #0f172a;
+  color: #f0fdf4;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.login-input:focus {
+  border-color: #22c55e;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #22c55e;
+  color: #0f172a;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #16a34a;
+}
+
+
+/* Register page css */
+
+
+.register-container {
+  background-color: rgb(26, 31, 46);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); /*зелена сянка */
+  width: 100%;
+  max-width: 400px;
+}
+
+.register-h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #bbf7d0; /* светлозелено */
+}
+
+.register-h3 {
+  text-align: left;
+  margin-bottom: 20px;
+  color: #bbf7d0; /* светлозелено */
+}
+
+.login-link {
+  text-align: left;
+  color: #4ade80; /* светлозелено */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-link:hover {
+  color: #22c55e; /* по-наситено зелено при ховър */
+  text-decoration: underline;
+}
+
+
+.register-input{
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  border: 1px solid #4ade80;
+  background-color: #0f172a;
+  color: #f0fdf4;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.register-input:focus {
+  border-color: #22c55e;
+}
+
+.register-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #22c55e;
+  color: #0f172a;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-button:hover {
+  background-color: #16a34a;
+}
