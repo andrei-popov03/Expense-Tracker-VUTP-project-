@@ -27,6 +27,9 @@ function Login() {
         // Handle successful login (e.g., save token, redirect)
         console.log("Login successful:", data);
         // Redirect to dashboard after login
+          
+        localStorage.setItem('access_token', data.token);//запазваме локално токена
+        
         navigate("/Dashboard");
       })
       .catch(error => {
