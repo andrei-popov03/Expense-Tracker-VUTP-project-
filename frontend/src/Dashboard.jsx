@@ -72,7 +72,7 @@ const Dashboard = () => {
     navigate('/login'); // пренасочване към login
   };
 
-  return (
+  return (  
     <div className="dashboard-container">
       <h2 className='dashboard-h2'>Dashboard</h2>
       {userData ? (
