@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const MonthlySummaryPage = () => {
   const token = localStorage.getItem('access_token');
@@ -6,6 +7,7 @@ const MonthlySummaryPage = () => {
   const [month, setMonth] = useState(now.getMonth() + 1);
   const [year, setYear] = useState(now.getFullYear());
   const [summary, setSummary] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:5000/summary?month=${month}&year=${year}`, {
@@ -17,6 +19,10 @@ const MonthlySummaryPage = () => {
       .then(data => setSummary(data))
       .catch(err => console.error('Error fetching summary:', err));
   }, [month, year]);
+
+  const handleBack = () => {
+    navigate('/dashboard');
+  };
 
   return (
     <div className="p-6">
@@ -44,15 +50,14 @@ const MonthlySummaryPage = () => {
           <p><strong>Общо приходи:</strong> {summary.total_income} лв</p>
           <p><strong>Общо разходи:</strong> {summary.total_expense} лв</p>
           <p><strong>Спестявания:</strong> {summary.savings} лв</p>
-          <button>
-            <a href="/Dashboard" className="BackButton">
-              Back
-            </a>
-          </button>
         </div>
       ) : (
         <p>Зареждане...</p>
       )}
+
+      <button onClick={handleBack} className="BackButton">
+        Back
+      </button>
     </div>
   );
 };

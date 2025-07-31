@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const FinanceFormPage = () => {
   const token = localStorage.getItem('access_token');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
   const [type, setType] = useState('income');
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     const endpoint = type === 'income' ? 'income' : 'expense';
@@ -28,10 +30,13 @@ const FinanceFormPage = () => {
       })
       .catch(err => console.error('Error:', err));
   };
+  const handleBack = () => {
+    navigate('/dashboard');
+  };
 
   return (
     <div className="p-6">
-      <h2 className="text-xl font-semibold mb-4">Добави {type === 'income' ? 'Приход' : 'Разход'}</h2>
+      <h2 className="text-xl font-semibold mb-4">Add {type === 'income' ? 'Income' : 'Expense'}</h2>
       <select value={type} onChange={(e) => setType(e.target.value)} className="border mb-2 p-2 rounded">
         <option value="income">Income</option>
         <option value="expense">Expense</option>
@@ -54,13 +59,11 @@ const FinanceFormPage = () => {
         onClick={handleSubmit}
         className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800"
       >
-        Добави
+        Add
       </button> <br />
-      <button>
-            <a href="/Dashboard" className="BackButton">
-              Back
-            </a>
-          </button>
+      <button onClick={handleBack} className="BackButton">
+        Back
+      </button>
     </div>
   );
 };
