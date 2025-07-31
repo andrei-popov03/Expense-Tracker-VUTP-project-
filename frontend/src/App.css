@@ -112,9 +112,8 @@ body {
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
 .login-link:hover {
-  color: #22c55e; /* по-наситено зелено при ховър */
+  color: #0e8c3c; /* по-наситено зелено при ховър */
   text-decoration: underline;
 }
 
@@ -130,7 +129,6 @@ body {
   outline: none;
   transition: border-color 0.2s;
 }
-
 .register-input:focus {
   border-color: #22c55e;
 }
@@ -146,62 +144,80 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .register-button:hover {
-  background-color: #16a34a;
+  background-color: #0e8c3c;
 }
 
 /* Dashboard page css */
 
-.dashboard-container {
+.Dashboard-container {
   background-color: rgb(26, 31, 46);
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); /*зелена сянка */
   width: 100%;
-  max-width: 400px;
-  
+  max-width: 400px; 
 }
 
-.dashboard-h2{
+.Dashboard-h1{
   text-align: center;
-  margin-bottom: 50px;
-  font-size: 40px;
+  margin-bottom: 60px;
+  margin-top: -25px;
+  font-size: 30px;
   color: #bbf7d0; /* светлозелено */
 }
 
-.dashboard-info{
+.DivWelcomeDashboard{
+  text-align: center;
+  margin-bottom: -10px;
+  margin-top: 60px;
+  color: #bbf7d0; /* светлозелено */
   width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 16px;
+  padding: 10px;
   border: 1px solid #4ade80;
   background-color: #0f172a;
-  color: #f0fdf4;
-  border-radius: 6px;
+  color: #bbf7d0;
+  border-radius: 10px;
   outline: none;
   transition: border-color 0.2s;
-  font-size: 20px;
+  font-style: italic;  
+}
+
+.ProfileLink{
   color: #4ade80; /* светлозелено */
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: large;
+  font-weight: bold;
+}
+.ProfileLink:hover {
+  color: #22c55e;
+}
+
+.Income_ExpenseLink{
+  color: #4ade80; /* светлозелено */
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: large;
+  font-weight: bold;
+}
+.Income_ExpenseLink:hover {
+  color: #22c55e;
+}
+
+.SummaryLink{
+  color: #4ade80; /* светлозелено */
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: large;
+  font-weight: bold;
+}
+.SummaryLink:hover {
+  color: #22c55e;
 }
 
 
-.dashboard-p{
-  text-align: center;
-  margin-bottom: 20px;
-  color: #bbf7d0; /* светлозелено */
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 16px;
-  border: 1px solid #4ade80;
-  background-color: #0f172a;
-  color: #f0fdf4;
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.2s;
-  
-}
-
-.dashboard-button {
+.LogoutButton {
   width: 100%;
   padding: 12px;
   background-color: #22c55e;
@@ -211,8 +227,8 @@ body {
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s;
+  align-items: bottom;
 }
-
-.dashboard-button:hover {
-  background-color: #16a34a;
+.LogoutButton:hover {
+  background-color: #0e8c3c;
 }

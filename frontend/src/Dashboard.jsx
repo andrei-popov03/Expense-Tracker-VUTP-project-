@@ -4,54 +4,9 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
-// const Dashboard = () => {
-//   const [userData, setUserData] = useState(null);
-
-//   useEffect(() => {
-//     // Вземаме токена от localStorage
-//     const token = localStorage.getItem('access_token');
-
-//    fetch("http://localhost:5000/user", {
-//       method: "GET",
-//       headers: {
-//         "Authorization": `Bearer ${token}`,
-//         "Content-Type": "application/json"
-//   },
-//   credentials: "include" 
-//     })
-//       .then((res) => res.json())
-//       .then((data) => {
-//         setUserData(data);
-//       })
-//       .catch((err) => {
-//         console.error('Error loading user data:', err);
-//       });
-//   }, []);
-
-//   return (
-//     <div className="p-4">
-//       <h1 className="dashboard-h1">Dashboard</h1>
-//       {userData ? (
-//         <div className='dashboard-p'>
-//           <p><strong>Username:</strong> {userData.username}</p>
-//           <p><strong>Email:</strong> {userData.email}</p>
-//         </div>
-//       ) : (
-//         <p>Loading user info...</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// import { useNavigate } from 'react-router-dom';
-
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [amount, setAmount] = useState('');
-  const [category, setCategory] = useState('');
   const navigate = useNavigate();
-
   const token = localStorage.getItem('access_token');
 
   useEffect(() => {
@@ -75,88 +30,39 @@ const Dashboard = () => {
     navigate('/login');
   };
 
-  const handleSubmitIncome = () => {
-    fetch('http://localhost:5000/income', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        amount: parseFloat(amount),
-        category: category || 'General',
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        alert(data.msg || 'Успешно добавен доход!');
-        setAmount('');
-        setCategory('');
-        setDropdownOpen(false);
-      })
-      .catch((err) => {
-        console.error('Error submitting income:', err);
-      });
-  };
-
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-800">
-      {/* Header */}
-      <header className="bg-blue-700 text-white p-4 flex justify-between items-center shadow">
-        <h1 className="text-xl font-semibold">Финансов Dashboard</h1>
+    <div className="Dashboard-container">
+      {/* Навигация в Dashboard */}
+      <nav className="bg-blue-700 text-white p-4 flex justify-between items-center shadow">
 
-        <div className="relative">
-          <button
-            onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="income-button"
-          >
-            Добави
-          </button>
+        <h1 className="Dashboard-h1">Expense Tracker Dashboard</h1>
 
-          {dropdownOpen && (
-            <div className="absolute right-0 mt-2 w-64 bg-white shadow-lg rounded p-4 z-10">
-              <input
-                type="number"
-                placeholder="Сума"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                className="w-full border p-2 mb-2 rounded"
-              />
-              <input
-                type="text"
-                placeholder="Категория (по избор)"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className="w-full border p-2 mb-2 rounded"
-              />
-              <button
-                onClick={handleSubmitIncome}
-                className="bg-blue-700 text-white px-4 py-2 w-full rounded hover:bg-blue-800"
-              >
-                Изпрати
-              </button>
-            </div>
-          )}
+        <div className="space-x-4">
+
+          <Link to="/dashboard/profile" className="ProfileLink">Profile</Link> <br />
+          <br />
+          <Link to="/financeFormPage" className="Income_ExpenseLink">Add Income/Expense</Link><br />
+          <br />
+          <Link to="/monthlySummaryPage" className="SummaryLink">Monthly Summary</Link><br />
+    
         </div>
-      </header>
+      </nav>
 
-      {/* Main content */}
+      {/* Информация */}
       <main className="p-6">
         {userData ? (
-          <div className="bg-white p-4 rounded shadow">
-            <p><strong>Username:</strong> {userData.username}</p>
-            <p><strong>Email:</strong> {userData.email}</p>
+          <div className="DivWelcomeDashboard">
+
+            <p> Welcome to the Expense Tracker<strong> {userData.username}</strong></p>
+
+            <button onClick={handleLogout} className="LogoutButton">
+            Logout
+          </button>
+
           </div>
         ) : (
-          <p>Зареждане на данни...</p>
+          <p>Loading data...</p>
         )}
-
-        <button
-          onClick={handleLogout}
-          className="mt-6 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-        >
-          Изход
-        </button>
       </main>
     </div>
   );
