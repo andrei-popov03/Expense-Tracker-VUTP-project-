@@ -35,32 +35,36 @@ const FinanceFormPage = () => {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-semibold mb-4">Add {type === 'income' ? 'Income' : 'Expense'}</h2>
-      <select value={type} onChange={(e) => setType(e.target.value)} className="border mb-2 p-2 rounded">
+    <div className="FinanceFormPage-container">
+      <h1 className="FinanceFormPage-h1">Add {type === 'income' ? 'Income' : 'Expense'}</h1>
+      
+      
+      <select value={type} onChange={(e) => setType(e.target.value)} className="FinanceFormPage-select">
         <option value="income">Income</option>
         <option value="expense">Expense</option>
-      </select>
+      </select> <br />
       <input
         type="number"
-        placeholder="Сума"
+        placeholder="Value"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
-        className="block w-full border p-2 mb-2 rounded"
-      />
+        className="FinanceFormPage-input-value"
+      /><br />
       <input
         type="text"
-        placeholder="Категория"
+        placeholder="Category"
         value={category}
         onChange={(e) => setCategory(e.target.value)}
-        className="block w-full border p-2 mb-4 rounded"
+        className="FinanceFormPage-input-Category"
       />
       <button
         onClick={handleSubmit}
-        className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800"
+        className="AddButton"
       >
         Add
       </button> <br />
+
+
       <button onClick={handleBack} className="BackButton">
         Back
       </button>

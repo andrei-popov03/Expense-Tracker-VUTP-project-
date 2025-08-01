@@ -25,35 +25,36 @@ const MonthlySummaryPage = () => {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-semibold mb-4">Обобщение за месеца</h2>
+    <div className="MonthlySummary-comtainer">
+      <h1 className="MonthlySummary-h1">Monthly Summary</h1>
 
-      <div className="mb-4">
-        <label className="mr-2">Месец:</label>
+      <div className="MonthlySummary-month-year-selector">
+        <label className="MonthlySummary-month">Month:</label>
         <input
           type="number"
           value={month}
           onChange={(e) => setMonth(Number(e.target.value))}
-          className="border p-1 rounded w-20 mr-4"
-        />
-        <label className="mr-2">Година:</label>
+          className="MonthlySummary-month-input"
+        /> <br />
+        <label className="MonthlySummary-year">Year:</label>
         <input
           type="number"
           value={year}
           onChange={(e) => setYear(Number(e.target.value))}
-          className="border p-1 rounded w-28"
+          className="MonthlySummary-year-input"
         />
-      </div>
+      
 
-      {summary ? (
-        <div className="bg-white shadow p-4 rounded">
-          <p><strong>Общо приходи:</strong> {summary.total_income} лв</p>
-          <p><strong>Общо разходи:</strong> {summary.total_expense} лв</p>
-          <p><strong>Спестявания:</strong> {summary.savings} лв</p>
-        </div>
-      ) : (
-        <p>Зареждане...</p>
-      )}
+        {summary ? (
+          <div className="MonthlySummary-summary">
+            <p><strong>Income:</strong> {summary.total_income} лв</p>
+            <p><strong>Expense:</strong> {summary.total_expense} лв</p>
+            <p><strong>Overall:</strong> {summary.savings} лв</p>
+          </div>
+        ) : (
+        <p>Loading...</p>
+        )}
+      </div>
 
       <button onClick={handleBack} className="BackButton">
         Back

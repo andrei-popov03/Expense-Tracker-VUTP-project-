@@ -59,6 +59,7 @@ body {
   border-radius: 6px;
   outline: none;
   transition: border-color 0.2s;
+  color: #bbf7d0;
 }
 
 .login-input:focus {
@@ -287,4 +288,137 @@ body {
 
 /* Add Income/Expense page css */
 
+.FinanceFormPage-container {
+  background-color: rgb(26, 31, 46);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); /*зелена сянка */
+  width: 100%;
+  max-width: auto; 
+  margin-right: auto;
+}
+
+.FinanceFormPage-h1{
+text-align: center;
+  margin-bottom: 40px;
+  margin-top: -25px;
+  font-size: 30px;
+  color: #bbf7d0; /* светлозелено */
+}
+
+.FinanceFormPage-select{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #4ade80;
+  background-color: #0f172a;
+  color: #bbf7d0;
+  font-style: bold;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.FinanceFormPage-input-Category{
+  width: 74%;
+  padding: 10px;
+  margin-left: 40px;
+  margin-bottom: 16px;
+  border: 1px solid #4ade80;
+  background-color: #0f172a;
+  color: #bbf7d0;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-style: italic;
+}
+
+.FinanceFormPage-input-value{
+  width: 74%;
+  padding: 10px;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-bottom: 16px;
+  border: 1px solid #4ade80;
+  background-color: #0f172a;
+  color: #bbf7d0;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-style: italic;
+}
+
+.AddButton{
+  width: 80%;
+  padding: 12px;
+  margin-left: 40px;
+  background-color: #22c55e;
+  color: #0f172a;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: -12px;
+}
+
 /* Monthly Summary page css */
+
+.MonthlySummary-comtainer {
+  background-color: rgb(26, 31, 46);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); /*зелена сянка */
+  width: 100%;
+  max-width: auto; 
+}
+
+.MonthlySummary-h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: -25px;
+  font-size: 30px;
+  color: #bbf7d0; /* светлозелено */
+}
+
+.MonthlySummary-month-year-selector {
+  margin-bottom: -10px;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #4ade80;
+  background-color: #0f172a;
+  color: #bbf7d0;
+  transition: border-color 0.2s;
+  outline: none;
+  border-radius: 10px;
+}
+
+.MonthlySummary-month-input{
+width: auto;
+  padding: 10px;
+  margin-bottom: 16px;
+  margin-left: 10px;
+  border: 1px solid #4ade80;
+  background-color: #0f172a;
+  color: #bbf7d0;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-style: italic;
+} 
+
+.MonthlySummary-year-input{
+  width: auto;
+  padding: 10px;
+  margin-bottom: 16px;
+  margin-left: 27px;
+  border: 1px solid #4ade80;
+  background-color: #0f172a;
+  color: #bbf7d0;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-style: italic;
+}
+
+
+
