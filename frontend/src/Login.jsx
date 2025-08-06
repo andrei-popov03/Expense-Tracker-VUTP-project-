@@ -15,7 +15,8 @@ function Login() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, password }),
+        credentials: "include" // Include credentials if your backend requires them
       })
       .then(response => {
         if (!response.ok) {
