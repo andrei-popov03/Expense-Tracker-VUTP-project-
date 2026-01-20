@@ -5,6 +5,7 @@ const FinanceFormPage = () => {
   const token = localStorage.getItem('access_token');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
+  const [add_info, setAddInfo] = useState('');
   const [type, setType] = useState('income');
   const navigate = useNavigate();
 
@@ -20,6 +21,7 @@ const FinanceFormPage = () => {
       body: JSON.stringify({
         amount: parseFloat(amount),
         category: category || 'General',
+        add_info: add_info || 'General',
       }),
     })
       .then(res => res.json())
@@ -27,6 +29,7 @@ const FinanceFormPage = () => {
         alert(data.msg || 'Успешно добавено!');
         setAmount('');
         setCategory('');
+        setAddInfo('');
       })
       .catch(err => console.error('Error:', err));
   };
@@ -56,6 +59,13 @@ const FinanceFormPage = () => {
         value={category}
         onChange={(e) => setCategory(e.target.value)}
         className="FinanceFormPage-input-Category"
+      />
+      <input
+        type="text"
+        placeholder="AddItional Information"
+        value={add_info}
+        onChange={(e) => setAddInfo(e.target.value)}
+        className="FinanceFormPage-input-AddInfo"
       />
       <button
         onClick={handleSubmit}
