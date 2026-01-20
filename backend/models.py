@@ -31,6 +31,7 @@ class Income(db.Model):
     user_id = db.Column(db.String, db.ForeignKey('users.id'), nullable=False)
     amount = db.Column(db.Float, nullable=False)
     category = db.Column(db.String(120), nullable=True)
+    add_info = db.Column(db.String(120), nullable=True) #- not implemented in DB yet
     date = db.Column(db.Date, default=datetime.utcnow)
     
 
@@ -39,4 +40,5 @@ class Expense(db.Model):
     user_id = db.Column(db.String, db.ForeignKey('users.id'), nullable=False)
     amount = db.Column(db.Float, nullable=False)
     category = db.Column(db.String(120), nullable=True)
+    add_info = db.Column(db.String(120), nullable=True) #- not implemented in DB yet
     date = db.Column(db.Date, default=datetime.utcnow)
