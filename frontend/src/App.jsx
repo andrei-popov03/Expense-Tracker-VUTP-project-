@@ -8,6 +8,7 @@ import Header from './Header';
 import ProfilePage from './ProfilePage';
 import FinanceFormPage from './FinanceFormPage';
 import MonthlySummaryPage from './MonthlySummaryPage';
+import HistoryPage from "./HistoryPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/financeFormPage" element={<FinanceFormPage />} />
       <Route path="/monthlySummaryPage" element={<MonthlySummaryPage />} />
       <Route path="/header" element={<Header />} />
+      <Route path="/history" element={<HistoryPage />} />
     </Routes>
   );
 }

@@ -75,3 +75,36 @@ def get_summary():
         "total_expense": total_expense,
         "savings": total_income - total_expense
     }), 200
+
+#
+@finance_bp.route('/transactions', methods=['GET'])
+@jwt_required()
+def get_transactions():
+    user_id = get_jwt_identity()
+    print(f"Fetching transactions for user_id: {user_id}")  # Debug statement
+
+    incomes = Income.query.filter_by(user_id=user_id).order_by(Income.date.desc()).all()
+    print(f"Fetched {incomes} incomes")  # Debug statement
+    expenses = Expense.query.filter_by(user_id=user_id).order_by(Expense.date.desc()).all()
+    print(f"Fetched {expenses} expense")  # Debug statement
+
+    return jsonify({
+        "incomes": [
+            {
+                "id": i.id,
+                "amount": i.amount,
+                "category": i.category,
+                "add_info": i.add_info,
+                "date": i.date.strftime("%Y-%m-%d")
+            } for i in incomes
+        ],
+        "expenses": [
+            {
+                "id": e.id,
+                "amount": e.amount,
+                "category": e.category,
+                "add_info": e.add_info,
+                "date": e.date.strftime("%Y-%m-%d")
+            } for e in expenses
+        ]
+    }), 200

@@ -24,6 +24,11 @@ const MonthlySummaryPage = () => {
     navigate('/dashboard');
   };
 
+  const handleHistory = () => {
+    navigate('/history');
+  };
+
+
   return (
     <div className="MonthlySummary-comtainer">
       <h1 className="MonthlySummary-h1">Monthly Summary</h1>
@@ -55,6 +60,11 @@ const MonthlySummaryPage = () => {
         <p>Loading...</p>
         )}
       </div>
+
+      <button onClick={handleHistory} className="HistoryButton">
+        History
+      </button>
+      <br />
 
       <button onClick={handleBack} className="BackButton">
         Back

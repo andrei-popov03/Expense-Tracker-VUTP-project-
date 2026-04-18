@@ -10,8 +10,12 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
     
-    CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}}, supports_credentials=True)
-
+    # CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}}, supports_credentials=True) - стария код за CORS който работи без хронология на клиента
+    # CORS(app,
+    #  resources={r"/*": {"origins": "http://localhost:5173"}},
+    #  supports_credentials=True,
+    #  allow_headers=["Content-Type", "Authorization"],
+    #  methods=["GET", "POST", "OPTIONS"])
 
     db.init_app(app)
     jwt.init_app(app)
