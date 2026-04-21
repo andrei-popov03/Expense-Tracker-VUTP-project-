@@ -18,6 +18,9 @@ def register():
     if not username or not email or not password:
         return jsonify({"msg": "Missing required fields"}), 400
 
+    if User.query.filter((User.username == username) | (User.email == email)).first():
+        return jsonify({"msg": "Username or email already taken"}), 409
+
     hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
     new_user = User(username=username, email=email, password=hashed_password)
 
@@ -40,17 +43,10 @@ def login():
 
     if user and check_password_hash(user.password, password):
         token = generate_token(identity=user.id)
-        return jsonify({"token": token,
-                        "user_id": user.id,
-                        "username": user.username}), 200
+        return jsonify({"token": token, "username": user.username}), 200
 
     return jsonify({"msg": "Invalid credentials"}), 401
 
-# @auth_bp.route('/all_users', methods=['GET'])
-# def get_all_users():
-#     users = User.query.all()
-#     user_list = [{"id": user.id, "username": user.username, "email": user.email} for user in users]
-#     return jsonify(user_list), 200
 
 @auth_bp.route('/user', methods=['GET'])
 @jwt_required()

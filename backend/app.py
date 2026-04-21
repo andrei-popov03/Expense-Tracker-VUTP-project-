@@ -1,16 +1,29 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 from conf import Config
 from extensions import db, jwt, migrate
 
-#finances
 from finances import finance_bp
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
-    
-    CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}}, supports_credentials=True)
+
+    CORS(
+        app,
+        resources={r"/*": {"origins": "http://localhost:5173"}},
+        supports_credentials=True,
+        # Must explicitly list Authorization or the preflight check rejects it
+        allow_headers=["Content-Type", "Authorization"],
+        methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    )
+
+    # Preflight requests never carry Authorization, so JWT would reject them
+    # with 401. Intercept here and return 200 — Flask-CORS adds its headers.
+    @app.before_request
+    def handle_preflight():
+        if request.method == 'OPTIONS':
+            return '', 200
 
 
     db.init_app(app)
@@ -19,15 +32,12 @@ def create_app():
     app.register_blueprint(finance_bp)
     
 
-    # Enable CORS (allow React frontend)
-    # CORS(app, resources={r"/*": {"origins": "*"}})
-
     from routes import auth_bp
     app.register_blueprint(auth_bp)
 
-    # with app.app_context():
-    #     from models import User
-    #     db.create_all()
+    with app.app_context():
+         from models import User, Income, Expense
+         db.create_all()
 
     return app
 

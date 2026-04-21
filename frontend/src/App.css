@@ -155,82 +155,76 @@ body {
   background-color: rgb(26, 31, 46);
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); /*зелена сянка */
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
   width: 100%;
-  max-width: 400px; 
+  max-width: 420px;
 }
 
-.Dashboard-h1{
+.Dashboard-header {
   text-align: center;
-  margin-bottom: 60px;
-  margin-top: -25px;
-  font-size: 30px;
-  color: #bbf7d0; /* светлозелено */
+  margin-bottom: 28px;
 }
 
-.DivWelcomeDashboard{
-  text-align: center;
-  margin-bottom: -10px;
-  margin-top: 60px;
-  color: #bbf7d0; /* светлозелено */
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #4ade80;
-  background-color: #0f172a;
+.Dashboard-h1 {
+  margin: -5px 0 8px;
+  font-size: 28px;
   color: #bbf7d0;
-  border-radius: 10px;
-  outline: none;
-  transition: border-color 0.2s;
-  font-style: italic;  
 }
 
-.ProfileLink{
-  color: #4ade80; /* светлозелено */
-  text-decoration: none;
-  transition: color 0.3s ease;
-  font-size: large;
-  font-weight: bold;
+.Dashboard-welcome {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
 }
-.ProfileLink:hover {
-  color: #22c55e;
+.Dashboard-welcome strong {
+  color: #4ade80;
 }
 
-.Income_ExpenseLink{
-  color: #4ade80; /* светлозелено */
-  text-decoration: none;
-  transition: color 0.3s ease;
-  font-size: large;
-  font-weight: bold;
-}
-.Income_ExpenseLink:hover {
-  color: #22c55e;
+.Dashboard-error {
+  color: #f87171;
+  font-size: 14px;
+  margin: 4px 0 0;
 }
 
-.SummaryLink{
-  color: #4ade80; /* светлозелено */
-  text-decoration: none;
-  transition: color 0.3s ease;
-  font-size: large;
-  font-weight: bold;
+.Dashboard-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
 }
-.SummaryLink:hover {
-  color: #22c55e;
+
+.Dashboard-nav-link {
+  display: block;
+  padding: 13px 16px;
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  color: #bbf7d0;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+}
+.Dashboard-nav-link:hover {
+  border-color: #4ade80;
+  color: #4ade80;
+  background-color: rgba(74, 222, 128, 0.05);
 }
 
 .LogoutButton {
   width: 100%;
   padding: 12px;
-  background-color: #22c55e;
-  color: #0f172a;
+  background-color: transparent;
+  color: #f87171;
   font-weight: bold;
-  border: none;
+  border: 1px solid #f87171;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  align-items: bottom;
+  transition: background-color 0.3s, color 0.3s;
 }
 .LogoutButton:hover {
-  background-color: #0e8c3c;
+  background-color: #f87171;
+  color: #0f172a;
 }
 
 /* Profile page css */
@@ -292,79 +286,111 @@ body {
   background-color: rgb(26, 31, 46);
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); /*зелена сянка */
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
   width: 100%;
-  max-width: auto; 
-  margin-right: auto;
+  max-width: 420px;
 }
 
-.FinanceFormPage-h1{
-text-align: center;
-  margin-bottom: 40px;
-  margin-top: -25px;
+.FinanceFormPage-h1 {
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: 28px;
   font-size: 30px;
-  color: #bbf7d0; /* светлозелено */
+  color: #bbf7d0;
 }
 
-.FinanceFormPage-select{
+.FFP-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.FFP-label {
+  font-size: 13px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.FFP-input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #4ade80;
-  background-color: #0f172a;
-  color: #bbf7d0;
-  font-style: bold;
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.FinanceFormPage-input-Category{
-  width: 74%;
-  padding: 10px;
-  margin-left: 40px;
-  margin-bottom: 16px;
+  padding: 10px 12px;
   border: 1px solid #4ade80;
   background-color: #0f172a;
   color: #bbf7d0;
   border-radius: 6px;
   outline: none;
   transition: border-color 0.2s;
-  font-style: italic;
+  box-sizing: border-box;
+}
+.FFP-input:focus {
+  border-color: #22c55e;
 }
 
-.FinanceFormPage-input-AddInfo{
-   width: 74%;
-  padding: 10px;
-  margin-left: 40px;
-  margin-bottom: 16px;
+/* The custom "Other" text box slides in below the select */
+.FFP-input--custom {
+  margin-top: 8px;
+  border-style: dashed;
+}
+
+.FFP-select {
+  width: 100%;
+  padding: 10px 12px;
   border: 1px solid #4ade80;
   background-color: #0f172a;
   color: #bbf7d0;
   border-radius: 6px;
   outline: none;
   transition: border-color 0.2s;
-  font-style: italic;
+  cursor: pointer;
+}
+.FFP-select:focus {
+  border-color: #22c55e;
 }
 
-.FinanceFormPage-input-value{
-  width: 74%;
-  padding: 10px;
-  margin-top: 20px;
-  margin-left: 40px;
-  margin-bottom: 16px;
-  border: 1px solid #4ade80;
-  background-color: #0f172a;
-  color: #bbf7d0;
+.FFP-message {
+  margin: 4px 0 16px;
+  padding: 10px 14px;
   border-radius: 6px;
-  outline: none;
-  transition: border-color 0.2s;
-  font-style: italic;
+  font-size: 14px;
+}
+.FFP-message--success {
+  background-color: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  border: 1px solid #4ade80;
+}
+.FFP-message--error {
+  background-color: rgba(248, 113, 113, 0.12);
+  color: #f87171;
+  border: 1px solid #f87171;
 }
 
-.AddButton{
-  width: 80%;
+.FFP-amount-row {
+  display: flex;
+  gap: 8px;
+}
+.FFP-amount-row .FFP-input {
+  flex: 1;
+}
+.FFP-currency-select {
+  width: 90px;
+  flex-shrink: 0;
+}
+
+.FFP-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+.FFP-buttons .BackButton {
+  margin-top: 0;
+}
+
+.AddButton {
+  width: 100%;
   padding: 12px;
-  margin-left: 40px;
   background-color: #22c55e;
   color: #0f172a;
   font-weight: bold;
@@ -372,67 +398,224 @@ text-align: center;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-bottom: -12px;
+}
+.AddButton:hover {
+  background-color: #16a34a;
+}
+.AddButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* Monthly Summary page css */
 
-.MonthlySummary-comtainer {
+.MonthlySummary-container {
   background-color: rgb(26, 31, 46);
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); /*зелена сянка */
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
   width: 100%;
-  max-width: auto; 
+  max-width: 420px;
 }
 
 .MonthlySummary-h1 {
   text-align: center;
-  margin-bottom: 40px;
-  margin-top: -25px;
+  margin-top: -5px;
+  margin-bottom: 28px;
   font-size: 30px;
-  color: #bbf7d0; /* светлозелено */
+  color: #bbf7d0;
 }
 
-.MonthlySummary-month-year-selector {
-  margin-bottom: -10px;
-  padding: 10px;
+.MonthlySummary-selectors {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.MonthlySummary-selector-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.MonthlySummary-label {
+  font-size: 13px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.MonthlySummary-input {
   width: 100%;
+  padding: 10px 12px;
   border: 1px solid #4ade80;
   background-color: #0f172a;
   color: #bbf7d0;
-  transition: border-color 0.2s;
+  border-radius: 6px;
   outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+.MonthlySummary-input:focus {
+  border-color: #22c55e;
+}
+
+.MonthlySummary-results {
+  background-color: #0f172a;
+  border: 1px solid #4ade80;
   border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
 }
 
-.MonthlySummary-month-input{
-width: auto;
-  padding: 10px;
-  margin-bottom: 16px;
-  margin-left: 10px;
-  border: 1px solid #4ade80;
-  background-color: #0f172a;
+.MonthlySummary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
   color: #bbf7d0;
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.2s;
-  font-style: italic;
-} 
-
-.MonthlySummary-year-input{
-  width: auto;
-  padding: 10px;
-  margin-bottom: 16px;
-  margin-left: 27px;
-  border: 1px solid #4ade80;
-  background-color: #0f172a;
-  color: #bbf7d0;
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.2s;
-  font-style: italic;
 }
 
+.MonthlySummary-row--savings {
+  font-weight: bold;
+  font-size: 17px;
+}
 
+.MonthlySummary-divider {
+  border-top: 1px solid #1e293b;
+  margin: 4px 0;
+}
+
+.MonthlySummary-value {
+  font-size: 16px;
+  font-weight: bold;
+}
+.income-value  { color: #4ade80; }
+.expense-value { color: #f87171; }
+
+.MonthlySummary-currency-select {
+  cursor: pointer;
+}
+
+.MonthlySummary-loading {
+  color: #64748b;
+  font-style: italic;
+  text-align: center;
+  margin: 24px 0;
+}
+
+.MonthlySummary-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.MonthlySummary-buttons .BackButton {
+  margin-top: 0;
+}
+
+.HistoryButton {
+  width: 100%;
+  padding: 12px;
+  background-color: transparent;
+  color: #4ade80;
+  font-weight: bold;
+  border: 1px solid #4ade80;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+.HistoryButton:hover {
+  background-color: #4ade80;
+  color: #0f172a;
+}
+
+/* History page css */
+
+.FinanceHistoryPage-container {
+  background-color: rgb(26, 31, 46);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.FinanceHistoryPage-container::-webkit-scrollbar {
+  width: 6px;
+}
+.FinanceHistoryPage-container::-webkit-scrollbar-track {
+  background: #0f172a;
+  border-radius: 3px;
+}
+.FinanceHistoryPage-container::-webkit-scrollbar-thumb {
+  background: #4ade80;
+  border-radius: 3px;
+}
+
+.FinanceHistoryPage-h1 {
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: 24px;
+  font-size: 30px;
+  color: #bbf7d0;
+}
+
+.FinanceHistoryPage-h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid;
+}
+.FinanceHistoryPage-h2.income {
+  color: #4ade80;
+  border-color: #4ade80;
+}
+.FinanceHistoryPage-h2.expense {
+  color: #f87171;
+  border-color: #f87171;
+}
+
+.FinanceHistoryPage-empty {
+  color: #64748b;
+  font-style: italic;
+  margin: 8px 0 16px;
+}
+
+.transaction-card {
+  background-color: #0f172a;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+.income-card  { border: 1px solid #4ade80; }
+.expense-card { border: 1px solid #f87171; }
+
+.transaction-amount {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: auto;
+}
+.income-amount  { color: #4ade80; }
+.expense-amount { color: #f87171; }
+
+.transaction-date {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.transaction-meta {
+  width: 100%;
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #94a3b8;
+}
 

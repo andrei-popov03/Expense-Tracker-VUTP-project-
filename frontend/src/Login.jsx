@@ -1,74 +1,77 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { API_URL } from "./api";
 import './App.css';
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (username && password) {
-      fetch("http://localhost:5000/login", {
-        method: "POST", // Ensure your backend /login route accepts POST requests
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ username, password })
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("Login failed");
-        }
-        return response.json();
-      })
-      .then(data => {
-        // Handle successful login (e.g., save token, redirect)
-        console.log("Login successful:", data);
-        // Redirect to dashboard after login
-          
-        localStorage.setItem('access_token', data.token);//запазваме локално токена
-        
-        navigate("/Dashboard");
-      })
-      .catch(error => {
-        alert(error.message);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    if (!username || !password) {
+      setError("Please enter both username and password.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
       });
-    } else {
-      alert("Please enter both username and password.");
+      const data = await response.json();
+      if (!response.ok) {
+        setError(data.msg || "Login failed.");
+        return;
+      }
+      localStorage.setItem('access_token', data.token);
+      navigate("/dashboard");
+    } catch {
+      setError("Could not connect to server. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <header className="login-header">
-      {/* <h1>Log in</h1> */}
       <div className="login-container">
-        <h2 className="login-h2" >Log in</h2>
-        <form className="login-form" onSubmit={handleLogin}></form>
-        <input className="login-input"
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-        />
-        <br />
-        <input className="login-input"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        <h3 className="login-h3">
-          Don't have an account? <Link className="link-register" to="/register">Register</Link>
-        </h3>
-        <button className="login-button" onClick={handleLogin}>Log in</button>
-        <br />
-        {/* <Link to="/login" style={{ color: "blue", cursor: "pointer" }}>Login</Link> */}
+        <h2 className="login-h2">Log in</h2>
+        <form className="login-form" onSubmit={handleLogin}>
+          <input
+            className="login-input"
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
+          <br />
+          <input
+            className="login-input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+          <br />
+          {error && <p style={{ color: "red", margin: "8px 0" }}>{error}</p>}
+          <h3 className="login-h3">
+            Don't have an account? <Link className="link-register" to="/register">Register</Link>
+          </h3>
+          <button className="login-button" type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Log in"}
+          </button>
+        </form>
       </div>
     </header>
   );
 }
 
 export default Login;
-
