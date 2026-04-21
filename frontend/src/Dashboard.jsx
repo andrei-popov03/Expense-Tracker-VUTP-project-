@@ -1,29 +1,32 @@
-import React, { useEffect, useState } from 'react';
-// import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { authFetch } from './api';
 
+const NAV_LINKS = [
+  { to: '/dashboard/profile',    label: 'Profile' },
+  { to: '/financeFormPage',      label: 'Add Income / Expense' },
+  { to: '/monthlySummaryPage',   label: 'Monthly Summary' },
+  { to: '/history',              label: 'Transaction History' },
+];
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
-  const token = localStorage.getItem('access_token');
 
   useEffect(() => {
-    fetch('http://localhost:5000/user', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setUserData(data);
+    if (!localStorage.getItem('access_token')) {
+      navigate('/login');
+      return;
+    }
+    authFetch('/user')
+      .then((res) => {
+        if (!res || !res.ok) throw new Error();
+        return res.json();
       })
-      .catch((err) => {
-        console.error('Error loading user data:', err);
-      });
-  }, []);
+      .then(setUserData)
+      .catch(() => setError('Could not load user data.'));
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('access_token');
@@ -32,38 +35,22 @@ const Dashboard = () => {
 
   return (
     <div className="Dashboard-container">
-      {/* Навигация в Dashboard */}
-      <nav className="bg-blue-700 text-white p-4 flex justify-between items-center shadow">
+      <div className="Dashboard-header">
+        <h1 className="Dashboard-h1">Expense Tracker</h1>
+        {userData
+          ? <p className="Dashboard-welcome">Welcome back, <strong>{userData.username}</strong></p>
+          : !error && <p className="Dashboard-welcome">Loading...</p>
+        }
+        {error && <p className="Dashboard-error">{error}</p>}
+      </div>
 
-        <h1 className="Dashboard-h1">Expense Tracker Dashboard</h1>
-
-        <div className="space-x-4">
-
-          <Link to="/dashboard/profile" className="ProfileLink">Profile</Link> <br />
-          <br />
-          <Link to="/financeFormPage" className="Income_ExpenseLink">Add Income/Expense</Link><br />
-          <br />
-          <Link to="/monthlySummaryPage" className="SummaryLink">Monthly Summary</Link><br />
-    
-        </div>
+      <nav className="Dashboard-nav">
+        {NAV_LINKS.map(({ to, label }) => (
+          <Link key={to} to={to} className="Dashboard-nav-link">{label}</Link>
+        ))}
       </nav>
 
-      {/* Информация */}
-      <main className="p-6">
-        {userData ? (
-          <div className="DivWelcomeDashboard">
-
-            <p> Welcome to the Expense Tracker<strong> {userData.username}</strong></p>
-
-            <button onClick={handleLogout} className="LogoutButton">
-            Logout
-          </button>
-
-          </div>
-        ) : (
-          <p>Loading data...</p>
-        )}
-      </main>
+      <button onClick={handleLogout} className="LogoutButton">Logout</button>
     </div>
   );
 };
