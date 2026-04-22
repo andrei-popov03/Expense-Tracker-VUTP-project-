@@ -36,7 +36,7 @@ def create_app():
     app.register_blueprint(auth_bp)
 
     with app.app_context():
-         from models import User, Income, Expense
+         from models import User, Income, Expense, RecurringTransaction
          db.create_all()
 
     return app

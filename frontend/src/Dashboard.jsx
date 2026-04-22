@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { to: '/financeFormPage',      label: 'Add Income / Expense' },
   { to: '/monthlySummaryPage',   label: 'Monthly Summary' },
   { to: '/history',              label: 'Transaction History' },
+  { to: '/recurringPage',        label: 'Recurring Transactions' },
 ];
 
 const Dashboard = () => {

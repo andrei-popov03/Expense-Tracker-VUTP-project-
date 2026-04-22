@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from models import Income, Expense
+from models import Income, Expense, RecurringTransaction
 from extensions import db
 from datetime import datetime, timezone
 
@@ -112,6 +112,98 @@ def get_summary():
         "savings": total_income - total_expense,
         "currency": display_currency,
     }), 200
+
+
+@finance_bp.route('/recurring', methods=['GET'])
+@jwt_required()
+def get_recurring():
+    user_id = get_jwt_identity()
+    items = RecurringTransaction.query.filter_by(user_id=user_id, is_active=True).all()
+    return jsonify([{
+        "id": r.id,
+        "type": r.type,
+        "amount": r.amount,
+        "currency": r.currency,
+        "category": r.category,
+        "add_info": r.add_info,
+        "frequency": r.frequency,
+    } for r in items]), 200
+
+
+@finance_bp.route('/recurring', methods=['POST'])
+@jwt_required()
+def create_recurring():
+    data = request.get_json()
+    user_id = get_jwt_identity()
+
+    tx_type = data.get('type')
+    if tx_type not in ('income', 'expense'):
+        return jsonify({"msg": "type must be 'income' or 'expense'"}), 400
+
+    amount = data.get('amount')
+    if amount is None:
+        return jsonify({"msg": "Amount is required"}), 400
+    try:
+        amount = float(amount)
+    except (ValueError, TypeError):
+        return jsonify({"msg": "Amount must be a number"}), 400
+    if amount <= 0:
+        return jsonify({"msg": "Amount must be greater than zero"}), 400
+
+    currency = data.get('currency', 'BGN').upper()
+    if currency not in SUPPORTED_CURRENCIES:
+        return jsonify({"msg": f"Unsupported currency. Use: {', '.join(SUPPORTED_CURRENCIES)}"}), 400
+
+    frequency = data.get('frequency', 'monthly')
+    if frequency not in ('weekly', 'monthly', 'yearly'):
+        return jsonify({"msg": "frequency must be weekly, monthly, or yearly"}), 400
+
+    entry = RecurringTransaction(
+        user_id=user_id,
+        type=tx_type,
+        amount=amount,
+        currency=currency,
+        category=data.get('category', 'General'),
+        add_info=data.get('add_info') or '',
+        frequency=frequency,
+    )
+    db.session.add(entry)
+    db.session.commit()
+    return jsonify({"msg": "Recurring transaction created"}), 201
+
+
+@finance_bp.route('/recurring/<string:rec_id>/apply', methods=['POST'])
+@jwt_required()
+def apply_recurring(rec_id):
+    user_id = get_jwt_identity()
+    rec = RecurringTransaction.query.filter_by(id=rec_id, user_id=user_id, is_active=True).first()
+    if not rec:
+        return jsonify({"msg": "Recurring transaction not found"}), 404
+
+    model_class = Income if rec.type == 'income' else Expense
+    entry = model_class(
+        user_id=user_id,
+        amount=rec.amount,
+        currency=rec.currency,
+        category=rec.category,
+        add_info=rec.add_info,
+        date=datetime.now(timezone.utc).date(),
+    )
+    db.session.add(entry)
+    db.session.commit()
+    return jsonify({"msg": f"{rec.type.capitalize()} applied for today"}), 201
+
+
+@finance_bp.route('/recurring/<string:rec_id>', methods=['DELETE'])
+@jwt_required()
+def delete_recurring(rec_id):
+    user_id = get_jwt_identity()
+    rec = RecurringTransaction.query.filter_by(id=rec_id, user_id=user_id).first()
+    if not rec:
+        return jsonify({"msg": "Recurring transaction not found"}), 404
+    db.session.delete(rec)
+    db.session.commit()
+    return jsonify({"msg": "Recurring transaction deleted"}), 200
 
 
 @finance_bp.route('/transactions', methods=['GET'])

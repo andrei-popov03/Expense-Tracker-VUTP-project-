@@ -6,6 +6,7 @@ import ProfilePage from './ProfilePage';
 import FinanceFormPage from './FinanceFormPage';
 import MonthlySummaryPage from './MonthlySummaryPage';
 import HistoryPage from "./HistoryPage";
+import RecurringPage from "./RecurringPage";
 import './App.css';
 
 // Guards any route that requires login — redirects to /login if no token is stored
@@ -24,6 +25,7 @@ function App() {
       <Route path="/financeFormPage" element={<ProtectedRoute><FinanceFormPage /></ProtectedRoute>} />
       <Route path="/monthlySummaryPage" element={<ProtectedRoute><MonthlySummaryPage /></ProtectedRoute>} />
       <Route path="/history" element={<ProtectedRoute><HistoryPage /></ProtectedRoute>} />
+      <Route path="/recurringPage" element={<ProtectedRoute><RecurringPage /></ProtectedRoute>} />
       {/* Catch-all: any unknown URL falls back to login */}
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
