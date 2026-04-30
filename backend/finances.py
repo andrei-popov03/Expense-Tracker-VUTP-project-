@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from models import Income, Expense, RecurringTransaction
+from models import Income, Expense, RecurringTransaction, BudgetLimit
 from extensions import db
 from datetime import datetime, timezone
 
@@ -236,3 +236,57 @@ def get_transactions():
             } for e in expenses
         ]
     }), 200
+
+
+@finance_bp.route('/budget', methods=['GET'])
+@jwt_required()
+def get_budget():
+    user_id = get_jwt_identity()
+    limit = BudgetLimit.query.filter_by(user_id=user_id).first()
+    if not limit:
+        return jsonify({"budget": None}), 200
+    return jsonify({"budget": {"amount": limit.amount, "currency": limit.currency}}), 200
+
+
+@finance_bp.route('/budget', methods=['POST'])
+@jwt_required()
+def set_budget():
+    data = request.get_json()
+    user_id = get_jwt_identity()
+
+    amount = data.get('amount')
+    if amount is None:
+        return jsonify({"msg": "Amount is required"}), 400
+    try:
+        amount = float(amount)
+    except (ValueError, TypeError):
+        return jsonify({"msg": "Amount must be a number"}), 400
+    if amount <= 0:
+        return jsonify({"msg": "Amount must be greater than zero"}), 400
+
+    currency = data.get('currency', 'BGN').upper()
+    if currency not in SUPPORTED_CURRENCIES:
+        return jsonify({"msg": "Unsupported currency"}), 400
+
+    # Upsert — one budget limit per user
+    limit = BudgetLimit.query.filter_by(user_id=user_id).first()
+    if limit:
+        limit.amount = amount
+        limit.currency = currency
+    else:
+        limit = BudgetLimit(user_id=user_id, amount=amount, currency=currency)
+        db.session.add(limit)
+
+    db.session.commit()
+    return jsonify({"budget": {"amount": amount, "currency": currency}}), 200
+
+
+@finance_bp.route('/budget', methods=['DELETE'])
+@jwt_required()
+def delete_budget():
+    user_id = get_jwt_identity()
+    limit = BudgetLimit.query.filter_by(user_id=user_id).first()
+    if limit:
+        db.session.delete(limit)
+        db.session.commit()
+    return jsonify({"msg": "Budget removed"}), 200

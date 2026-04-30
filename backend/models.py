@@ -41,6 +41,15 @@ class Expense(db.Model):
     date = db.Column(db.Date, default=datetime.utcnow)
 
 
+class BudgetLimit(db.Model):
+    __tablename__ = 'budget_limits'
+    id = db.Column(db.String(256), primary_key=True, default=lambda: str(uuid4()))
+    # unique=True enforces one budget per user (upsert pattern on POST)
+    user_id = db.Column(db.String, db.ForeignKey('users.id'), nullable=False, unique=True)
+    amount = db.Column(db.Float, nullable=False)
+    currency = db.Column(db.String(3), nullable=False, default='BGN')
+
+
 class RecurringTransaction(db.Model):
     __tablename__ = 'recurring_transactions'
     id = db.Column(db.String(256), primary_key=True, default=lambda: str(uuid4()))
