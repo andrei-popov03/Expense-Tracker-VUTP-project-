@@ -684,6 +684,39 @@ body {
   border-color: #f87171;
 }
 
+.FinanceHistoryPage-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px 14px;
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+}
+
+.FinanceHistoryPage-controls-label {
+  font-size: 13px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.FinanceHistoryPage-currency-select {
+  padding: 6px 10px;
+  border: 1px solid #4ade80;
+  background-color: #0f172a;
+  color: #bbf7d0;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.FinanceHistoryPage-currency-select:focus {
+  border-color: #22c55e;
+}
+
 .FinanceHistoryPage-empty {
   color: #64748b;
   font-style: italic;
@@ -721,5 +754,319 @@ body {
   margin: 2px 0 0;
   font-size: 13px;
   color: #94a3b8;
+}
+
+
+/* ── Budget section (MonthlySummaryPage) ── */
+
+.Budget-section {
+  margin-top: 28px;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.Budget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.Budget-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #bbf7d0;
+  letter-spacing: 0.03em;
+}
+
+.Budget-header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Shared button base */
+.Budget-btn-save,
+.Budget-btn-secondary,
+.Budget-btn-remove {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  border: 1px solid transparent;
+}
+
+.Budget-btn-save {
+  background-color: #4ade80;
+  color: #0f172a;
+  border-color: #4ade80;
+}
+.Budget-btn-save:hover {
+  background-color: #22c55e;
+  border-color: #22c55e;
+}
+
+.Budget-btn-secondary {
+  background-color: transparent;
+  color: #4ade80;
+  border-color: #4ade80;
+}
+.Budget-btn-secondary:hover {
+  background-color: rgba(74, 222, 128, 0.1);
+}
+
+.Budget-btn-remove {
+  background-color: transparent;
+  color: #f87171;
+  border-color: #f87171;
+}
+.Budget-btn-remove:hover {
+  background-color: rgba(248, 113, 113, 0.1);
+}
+
+/* Input row inside the form */
+.Budget-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.Budget-input {
+  flex: 1;
+  min-width: 100px;
+  padding: 8px 12px;
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #f0fdf4;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.Budget-input:focus {
+  border-color: #4ade80;
+}
+
+.Budget-currency-select {
+  padding: 8px 10px;
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #bbf7d0;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.Budget-currency-select:focus {
+  border-color: #4ade80;
+}
+
+/* Progress bar */
+.Budget-display {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.Budget-bar-track {
+  width: 100%;
+  height: 10px;
+  background-color: #0f172a;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid #334155;
+}
+
+.Budget-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background-color: #4ade80;
+  transition: width 0.4s ease, background-color 0.4s ease;
+}
+.Budget-bar-fill.warning {
+  background-color: #fbbf24;
+}
+.Budget-bar-fill.over {
+  background-color: #f87171;
+}
+
+/* Stat line: spent / pct / of budget */
+.Budget-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.Budget-pct-warning {
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+/* Alert banners */
+.Budget-alert {
+  margin: 4px 0 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.Budget-alert--warning {
+  background-color: rgba(251, 191, 36, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.Budget-alert--over {
+  background-color: rgba(248, 113, 113, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+
+/* ── Transaction History filters ── */
+
+.Filter-toggle-btn {
+  padding: 6px 14px;
+  background-color: transparent;
+  border: 1px solid #4ade80;
+  border-radius: 6px;
+  color: #4ade80;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.Filter-toggle-btn:hover {
+  background-color: rgba(74, 222, 128, 0.1);
+}
+.Filter-toggle-btn.active {
+  background-color: rgba(74, 222, 128, 0.15);
+  color: #bbf7d0;
+}
+
+.Filter-clear-btn {
+  padding: 6px 12px;
+  background-color: transparent;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  color: #94a3b8;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.Filter-clear-btn:hover {
+  border-color: #f87171;
+  color: #f87171;
+}
+
+.Filter-panel {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.Filter-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.Filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.Filter-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.Filter-select,
+.Filter-input {
+  padding: 7px 10px;
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #f0fdf4;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.Filter-select:focus,
+.Filter-input:focus {
+  border-color: #4ade80;
+}
+
+/* date input calendar icon color */
+.Filter-input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.6);
+  cursor: pointer;
+}
+
+.Filter-results-count {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0 0 10px;
+}
+
+.Export-buttons {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.Export-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background-color 0.2s, opacity 0.2s;
+  border: none;
+}
+.Export-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.Export-btn--csv {
+  background-color: #1e4d2b;
+  color: #4ade80;
+  border: 1px solid #4ade80;
+}
+.Export-btn--csv:not(:disabled):hover {
+  background-color: #166534;
+}
+
+.Export-btn--pdf {
+  background-color: #4c1c1c;
+  color: #f87171;
+  border: 1px solid #f87171;
+}
+.Export-btn--pdf:not(:disabled):hover {
+  background-color: #7f1d1d;
 }
 
