@@ -1,4 +1,4 @@
-**# Expense-Tracker-VUTP-project-**
+# Expense-Tracker-VUTP-project-
 
 A full-stack web application for tracking and analyzing personal finances, with multi-currency support. Users can record income and expenses, set monthly budget limits, manage recurring transactions, and export their financial data — all secured with JWT-based authentication.
 
@@ -24,7 +24,7 @@ This project was developed as a diploma thesis at the University of Telecommunic
 
 
 
-**# Tech Stack**
+# Tech Stack
 
 Frontend:
   - React 19
@@ -35,15 +35,22 @@ Frontend:
     
   - jsPDF & jspdf-autotable (PDF export)
 
+
 Backend:
   - Python 3 with Flask
+  - 
   - SQLAlchemy (ORM)
+  - 
   - Flask-JWT-Extended (authentication)
+  - 
   - Flask-Migrate / Alembic (database migrations)
+  - 
   - Flask-CORS
+
 
 Database:
   - PostgreSQL
+
 
 Tooling:
   - Docker (containerization)
@@ -51,7 +58,7 @@ Tooling:
   - Postman (API testing)
   - DBeaver (database management)
 
-**Architecture**
+# Architecture
 
 The application follows a classic three-tier client–server architecture:
 
