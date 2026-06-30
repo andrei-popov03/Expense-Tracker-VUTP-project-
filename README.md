@@ -1,6 +1,6 @@
 # Expense-Tracker-VUTP-project-
 
-A full-stack web application for tracking and analyzing personal finances, with multi-currency support. Users can record income and expenses, set monthly budget limits, manage recurring transactions, and export their financial data — all secured with JWT-based authentication.
+A full-stack web application for tracking and analyzing personal finances, with multi-currency support. Users can record income and expenses, set monthly budget limits, manage recurring transactions, and export their financial data - all secured with JWT-based authentication.
 
 This project was developed as a diploma thesis at the University of Telecommunications and Post, Sofia.
 
