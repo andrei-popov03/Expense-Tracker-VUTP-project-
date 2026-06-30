@@ -4,7 +4,7 @@ A full-stack web application for tracking and analyzing personal finances, with 
 
 This project was developed as a diploma thesis at the University of Telecommunications and Post, Sofia.
 
-**# Features:**
+# Features:
   
   Secure authentication - user registration and login with JWT tokens and PBKDF2-SHA256 password hashing
 
