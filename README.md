@@ -64,11 +64,14 @@ Prerequisites:
 # Backend setup
 
 Create and activate a virtual environment
-``python -m venv env_tracker"``
-``.\env_tracker\Scripts\Activate.ps1``  for - Windows
- ``source env_tracker/bin/activate``   for - Linux / macOS
 
-Install dependencies
+``python -m venv env_tracker"``
+
+for Windows: ``.\env_tracker\Scripts\Activate.ps1``
+
+for Linux / macOS: ``source env_tracker/bin/activate``
+
+Install dependencies; ``pip install -r requirements.txt``
   ``pip install -r requirements.txt``
 
 Create a .env file (see .env.example) with:
