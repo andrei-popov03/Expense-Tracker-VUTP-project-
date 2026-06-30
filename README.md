@@ -64,32 +64,32 @@ Prerequisites:
 # Backend setup
 
 Create and activate a virtual environment
-"python -m venv env_tracker"
-  .\env_tracker\Scripts\Activate.ps1   for - Windows
-  source env_tracker/bin/activate    for - Linux / macOS
+``python -m venv env_tracker"``
+``.\env_tracker\Scripts\Activate.ps1``  for - Windows
+ ``source env_tracker/bin/activate``   for - Linux / macOS
 
 Install dependencies
-  pip install -r requirements.txt
+  ``pip install -r requirements.txt``
 
 Create a .env file (see .env.example) with:
    SECRET_KEY=...
    JWT_SECRET_KEY=...
    SQLALCHEMY_DATABASE_URI=postgresql://user:password@localhost:5432/expense_tracker
 
-Apply database migrations
-  flask db upgrade
+  - Apply database migrations
+  ``flask db upgrade``
 
-Run the server (default: http://localhost:5000)
-  flask run
+  - Run the server (default: http://localhost:5000)
+ `` flask run``
 
 
 # Frontend setup
 
-Install dependencies
-  npm install
+  - Install dependencies
+  ``npm install``
 
-Start the development server (default: http://localhost:5173)
-  npm run dev
+  - Start the development server (default: http://localhost:5173)
+  ``npm run dev``
 
 
 # Running with Docker
