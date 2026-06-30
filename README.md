@@ -75,12 +75,12 @@ Install dependencies: ``pip install -r requirements.txt``
 
 - Create a .env file (see .env.example) with:
 
-  - `` SECRET_KEY=...``
-  - ``JWT_SECRET_KEY=...``
-  - ``SQLALCHEMY_DATABASE_URI=postgresql://user:password@localhost:5432/expense_tracker``
+    - `` SECRET_KEY=...``
+    - ``JWT_SECRET_KEY=...``
+    - ``SQLALCHEMY_DATABASE_URI=postgresql://user:password@localhost:5432/expense_tracker``
 
-- Apply database migrations: ``flask db upgrade``
-- Run the server (default: http://localhost:5000): `` flask run``
+  - Apply database migrations: ``flask db upgrade``
+  - Run the server (default: http://localhost:5000): `` flask run``
  
 
 
