@@ -5,22 +5,14 @@ A full-stack web application for tracking and analyzing personal finances, with 
 This project was developed as a diploma thesis at the University of Telecommunications and Post, Sofia.
 
 # Features:
-  
-  Secure authentication - user registration and login with JWT tokens and PBKDF2-SHA256 password hashing
-
-  Income & expense tracking - a unified form for adding transactions across dynamic categories
-
-  Multi-currency support - BGN, EUR, and USD, with conversion at display time
-
-  Monthly summary - income, expense, and balance overview for any selected month
-
-  Budget limits - set a monthly budget with a three-state progress bar (normal / warning / over)
-
-  Recurring transactions - templates for regular income and expenses (weekly, monthly, yearly) with manual apply
-
-  Transaction history - six combinable filters (type, date range, category, amount range)
-
-  Data export - download transaction history as CSV or PDF
+  - Secure authentication - user registration and login with JWT tokens and PBKDF2-SHA256 password hashing
+  - Income & expense tracking - a unified form for adding transactions across dynamic categories
+  - Multi-currency support - BGN, EUR, and USD, with conversion at display time
+  - Monthly summary - income, expense, and balance overview for any selected month
+  - Budget limits - set a monthly budget with a three-state progress bar (normal / warning / over)
+  - Recurring transactions - templates for regular income and expenses (weekly, monthly, yearly) with manual apply
+  - Transaction history - six combinable filters (type, date range, category, amount range)
+  - Data export - download transaction history as CSV or PDF
 
 
 
@@ -28,23 +20,16 @@ This project was developed as a diploma thesis at the University of Telecommunic
 
 Frontend:
   - React 19
-    
   - Vite
-    
   - React Router DOM
-    
   - jsPDF & jspdf-autotable (PDF export)
 
 
 Backend:
   - Python 3 with Flask
-  - 
   - SQLAlchemy (ORM)
-  - 
   - Flask-JWT-Extended (authentication)
-  - 
   - Flask-Migrate / Alembic (database migrations)
-  - 
   - Flask-CORS
 
 
