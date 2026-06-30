@@ -53,7 +53,7 @@ The application follows a classic three-tier client–server architecture:
 
 The client communicates with the server through REST requests, exchanging data in JSON format. Authentication uses JWT tokens, and the user's identity is always derived from the signed token rather than the request body, ensuring users can only access their own data.
 
-**Getting Started**
+# Getting Started
 
 Prerequisites: 
   - Python 3.10+
@@ -61,7 +61,7 @@ Prerequisites:
   - PostgreSQL 16
   - (Optional) Docker
 
-**Backend setup**
+# Backend setup
 
 Create and activate a virtual environment
   python -m venv env_tracker
@@ -83,7 +83,7 @@ Run the server (default: http://localhost:5000)
   flask run
 
 
-**Frontend setup**
+# Frontend setup
 
 Install dependencies
   npm install
@@ -92,13 +92,13 @@ Start the development server (default: http://localhost:5173)
   npm run dev
 
 
-**Running with Docker**
+# Running with Docker
 
 docker-compose up -d --build
 
 This starts the backend, frontend, and PostgreSQL database together. Use docker-compose down to stop all services.
 
-**Security**
+# Security
   
   - Passwords are hashed with PBKDF2-SHA256 (600,000 iterations, per-password salt) - never stored as plain text
   - Authentication is handled via stateless JWT tokens
@@ -106,7 +106,7 @@ This starts the backend, frontend, and PostgreSQL database together. Use docker-
   - Sensitive configuration (secret keys, database credentials) is kept in a .env file, excluded from version control
   - All database access goes through SQLAlchemy's parameterized queries, protecting against SQL injection
 
-**Future Improvements**
+# Future Improvements
   
   - Graphical data visualization (charts and diagrams)
   - Automatic application of recurring transactions via a scheduled job
