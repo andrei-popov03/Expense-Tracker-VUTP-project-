@@ -113,6 +113,5 @@ This starts the backend, frontend, and PostgreSQL database together. Use docker-
   - Mobile application (React Native)
   - Shared family budgets
 
-**Author**
-
-Andrey Popov — Computer Technologies, University of Telecommunications and Post, Sofia, 2026.
+# Author
+Andrey Popov - Computer Technologies, University of Telecommunications and Post, Sofia, 2026.
