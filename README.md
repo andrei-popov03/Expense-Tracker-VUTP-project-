@@ -1,9 +1,11 @@
 **# Expense-Tracker-VUTP-project-**
+
 A full-stack web application for tracking and analyzing personal finances, with multi-currency support. Users can record income and expenses, set monthly budget limits, manage recurring transactions, and export their financial data — all secured with JWT-based authentication.
 
 This project was developed as a diploma thesis at the University of Telecommunications and Post, Sofia.
 
 **Features:**
+  
   Secure authentication - user registration and login with JWT tokens and PBKDF2-SHA256 password hashing
   Income & expense tracking - a unified form for adding transactions across dynamic categories
   Multi-currency support - BGN, EUR, and USD, with conversion at display time
@@ -14,6 +16,7 @@ This project was developed as a diploma thesis at the University of Telecommunic
   Data export - download transaction history as CSV or PDF
 
 **Tech Stack**
+
 Frontend:
   - React 19
   - Vite
@@ -37,6 +40,7 @@ Tooling:
   - DBeaver (database management)
 
 **Architecture**
+
 The application follows a classic three-tier client–server architecture:
 
   - Presentation layer (client) - a React single-page application running in the browser
@@ -46,6 +50,7 @@ The application follows a classic three-tier client–server architecture:
 The client communicates with the server through REST requests, exchanging data in JSON format. Authentication uses JWT tokens, and the user's identity is always derived from the signed token rather than the request body, ensuring users can only access their own data.
 
 **Getting Started**
+
 Prerequisites: 
   - Python 3.10+
   - Node.js 18+
@@ -53,6 +58,7 @@ Prerequisites:
   - (Optional) Docker
 
 **Backend setup**
+
 Create and activate a virtual environment
   python -m venv env_tracker
   .\env_tracker\Scripts\Activate.ps1   for - Windows
@@ -74,6 +80,7 @@ Run the server (default: http://localhost:5000)
 
 
 **Frontend setup**
+
 Install dependencies
   npm install
 
@@ -82,11 +89,13 @@ Start the development server (default: http://localhost:5173)
 
 
 **Running with Docker**
+
 docker-compose up -d --build
 
 This starts the backend, frontend, and PostgreSQL database together. Use docker-compose down to stop all services.
 
 **Security**
+  
   - Passwords are hashed with PBKDF2-SHA256 (600,000 iterations, per-password salt) - never stored as plain text
   - Authentication is handled via stateless JWT tokens
   - User identity is always extracted from the signed token, never from the request body, ensuring full data isolation
@@ -94,6 +103,7 @@ This starts the backend, frontend, and PostgreSQL database together. Use docker-
   - All database access goes through SQLAlchemy's parameterized queries, protecting against SQL injection
 
 **Future Improvements**
+  
   - Graphical data visualization (charts and diagrams)
   - Automatic application of recurring transactions via a scheduled job
   - Dynamic exchange rates fetched from an external API (e.g. BNB or ECB)
@@ -101,4 +111,5 @@ This starts the backend, frontend, and PostgreSQL database together. Use docker-
   - Shared family budgets
 
 **Author**
+
 Andrey Popov — Computer Technologies, University of Telecommunications and Post, Sofia, 2026.
