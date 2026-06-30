@@ -64,7 +64,7 @@ Prerequisites:
 # Backend setup
 
 Create and activate a virtual environment
-  python -m venv env_tracker
+"python -m venv env_tracker"
   .\env_tracker\Scripts\Activate.ps1   for - Windows
   source env_tracker/bin/activate    for - Linux / macOS
 
